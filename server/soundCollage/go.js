@@ -1,7 +1,7 @@
 console.log("loaded!")
 
-// let SERVER_URL = "https://wapi.brianellissound.com/sound-collage"
-let SERVER_URL = "http://0.0.0.0:3009/sound-collage"
+let SERVER_URL = "https://wapi.brianellissound.com/sound-collage"
+// let SERVER_URL = "http://0.0.0.0:3009/sound-collage"
 // Initialize variables
 let mediaRecorder;
 let chunks = [];
