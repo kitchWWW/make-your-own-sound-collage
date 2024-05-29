@@ -9,7 +9,7 @@ import time
 import threading
 import os
 print("hello? 4")
-# import processing  # Import the processing module
+import collage  # Import the processing module
 print("hello? 5")
 
 app = Flask(__name__)
@@ -23,17 +23,18 @@ def testIt(arg):
 
 def run_process(filename):
     # Call the process function from processing.py in a separate thread
-    thread = threading.Thread(target=testIt, args=(filename,))
+    thread = threading.Thread(target=collage.doForFile, args=(filename,))
     thread.start()
 
-@app.route('/sound-collage/test')
-def testFunction():
-    return "hello, world"
-    # return send_from_directory(os.getcwd(), filename)
+# @app.route('/sound-collage/test')
+# def testFunction():
+#     return "hello, world"
+#     # return send_from_directory(os.getcwd(), filename)
 
-# @app.route('/sound-collage/<path:filename>')
-# def serve_static_files(filename):
-#     return send_from_directory(os.getcwd(), filename)
+@app.route('/sound-collage/<path:filename>')
+def serve_static_files(filename):
+    print("trying?")
+    return send_from_directory(os.getcwd(), filename)
 
 @app.route('/sound-collage/upload_audio', methods=['POST'])
 def upload_audio():
@@ -48,7 +49,7 @@ def upload_audio():
     file_prefix = current_milli_time()
     file_name = 'uploads/'+file_prefix+'_in.ogg'
     audio_file.save(file_name)  # Save the audio file locally
-    run_process(file_name)
+    run_process(file_prefix)
     
     return file_prefix, 200
 
