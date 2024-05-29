@@ -27,9 +27,9 @@ def run_process(filename):
     thread.start()
 
 @app.route('/sound-collage/test')
-def serve_static_files(filename):
+def testFunction():
     return "hello, world"
-    return send_from_directory(os.getcwd(), filename)
+    # return send_from_directory(os.getcwd(), filename)
 
 # @app.route('/sound-collage/<path:filename>')
 # def serve_static_files(filename):
